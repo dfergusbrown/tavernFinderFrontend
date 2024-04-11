@@ -30,7 +30,7 @@ async function getResults() {
             result.appendChild(campaignName)
 
             const dmName = document.createElement('div')
-            dmName.textContent = el.userId
+            dmName.textContent = el.userId.username
             dmName.classList.add('col')
             result.appendChild(dmName)
 
@@ -48,7 +48,6 @@ async function getResults() {
                 freqDays.textContent = `On ${el.freqDays}`
                 details.appendChild(freqDays)
             result.appendChild(details)
-
         })
     } catch (error) {
         console.error(error)
