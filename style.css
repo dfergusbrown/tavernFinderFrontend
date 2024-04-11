@@ -7,14 +7,29 @@
 }
 
 .navbar {
-    background-color: slategray;
+    background-color: white;
 }
 
 .resultsBox {
-    height: 100%;
+    background-color: white;
 }
 
-.results {
+#results {
     background-color: white;
-    height: 80%;
+    color: black;
+}
+#results p {
+    margin-bottom: 0;
+}
+
+
+
+#form {
+    background-color: black;
+    border: transparent 3px white;
+    border-radius: 10px;
+}
+
+.hide {
+    display: none;
 }
