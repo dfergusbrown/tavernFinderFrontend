@@ -1,26 +1,44 @@
+/* -- CACHED ELEMENTS -- */
 const searchBtn = document.querySelector('#searchBtn')
 const results = document.querySelector('#results')
+const formEl = document.querySelector('#form')
+const numOfResults = document.querySelector('#numOfResults')
 
+/* -- Event Listeners -- */
 searchBtn.addEventListener('click', getResults)
 
-async function getResults() {
-    const url = 'http://localhost:3001/post/'
-    console.log('click event registered')
+
+/* -- FUNCTIONS -- */
+async function getResults(e) {
+    e.preventDefault()
+    results.innerHTML = '' //clear results
+
+    const formData = new FormData(formEl, searchBtn)
+    const formDataObj = {}
+    for (const [key, value] of formData) {
+        formDataObj[key] = value
+    }
+    console.log(formDataObj)
+
+    const url = 'http://localhost:3001/post/search'
     try {
         const response = await fetch(url, {
-            method: "GET",
+            method: "POST",
             mode: "cors",
             headers: {
                 "Content-Type": "application/json"
             },
-            // body: JSON.stringify(data)
+            body: JSON.stringify(formDataObj)
         })
         const JSONresult = await response.json()
+        
+        numOfResults.textContent = JSONresult.numOfResults
         console.log(JSONresult)
-        JSONresult.forEach(el => {
+        JSONresult.results.forEach(el => {
             //create result and place on page
             const result = document.createElement('div')
             result.classList.add('row')
+            result.classList.add('border-bottom')
             results.appendChild(result)
 
             // add data to result - num of players, day, time of day
@@ -52,5 +70,12 @@ async function getResults() {
     } catch (error) {
         console.error(error)
     }
+}
 
+function submitForm() {
+    const formData = new FormData(formEl, searchBtn)
+
+    formData.entries().forEach(el => {
+        console.log(el)
+    })
 }

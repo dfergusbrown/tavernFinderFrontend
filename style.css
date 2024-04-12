@@ -1,4 +1,4 @@
-.container1 {
+body {
     background-color: black;
     margin: 0;
     padding: 0;
@@ -12,22 +12,31 @@
 
 .resultsBox {
     background-color: white;
+    overflow: scroll;
+    color: black;
 }
 
 #results {
     background-color: white;
-    color: black;
 }
 #results p {
     margin-bottom: 0;
 }
 
-
+#startTime {
+    margin-left: 3rem;
+}
 
 #form {
     background-color: black;
     border: transparent 3px white;
     border-radius: 10px;
+}
+
+/* postdetail */
+
+#campaignImg {
+    height: 30vmin;
 }
 
 .hide {
