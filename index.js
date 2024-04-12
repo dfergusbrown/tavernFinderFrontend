@@ -41,17 +41,22 @@ async function getResults(e) {
             result.classList.add('border-bottom')
             results.appendChild(result)
 
-            // add data to result - num of players, day, time of day
+            // add Campaign Name
             const campaignName = document.createElement('div')
-            campaignName.textContent = el.campaignName
+                const detailLink = document.createElement('a')
+                detailLink.textContent = el.campaignName
+                detailLink.setAttribute("href", `/views/postDetail.html?id=${el._id}`)
+                campaignName.appendChild(detailLink)
             campaignName.classList.add('col')
             result.appendChild(campaignName)
 
+            // add DM name to center column
             const dmName = document.createElement('div')
             dmName.textContent = el.userId.username
             dmName.classList.add('col')
             result.appendChild(dmName)
-
+            
+            // add remaining details
             const details = document.createElement('div')
             details.classList.add('col')
                 const numPlayers = document.createElement('div')
@@ -70,12 +75,4 @@ async function getResults(e) {
     } catch (error) {
         console.error(error)
     }
-}
-
-function submitForm() {
-    const formData = new FormData(formEl, searchBtn)
-
-    formData.entries().forEach(el => {
-        console.log(el)
-    })
 }
