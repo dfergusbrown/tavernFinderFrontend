@@ -45,7 +45,7 @@ async function getResults(e) {
             const campaignName = document.createElement('div')
                 const detailLink = document.createElement('a')
                 detailLink.textContent = el.campaignName
-                detailLink.setAttribute("href", `/views/postDetail.html?id=${el._id}`)
+                detailLink.setAttribute("href", `/views/postDetail.html?${el._id}`)
                 campaignName.appendChild(detailLink)
             campaignName.classList.add('col')
             result.appendChild(campaignName)
