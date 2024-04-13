@@ -6,7 +6,7 @@ const frequencyField = document.querySelector('#frequencyField')
 const freqDaysField = document.querySelector('#freqDaysField')
 const expectedLengthField = document.querySelector('#expectedLengthField')
 const descriptionField = document.querySelector('#descriptionField')
-
+const commentsLink = document.querySelector('#commentsLink')
 
 fetchData()
 async function fetchData() {
@@ -14,8 +14,8 @@ async function fetchData() {
     const id = queryString.substring(1)
     console.log(id)
 
-    const url = 'http://localhost:3001/post/'
-    const response = await fetch(`${url}${id}`, {
+    const url = 'http://localhost:3001/'
+    const response = await fetch(`${url}post/${id}`, {
         method: "GET",
         mode: "cors",
         headers: {
@@ -34,4 +34,6 @@ async function fetchData() {
     freqDaysField.textContent = postResult.freqDays
     expectedLengthField.textContent = postResult.expectedLength
     descriptionField.textContent = postResult.description
+
+    commentsLink.setAttribute('href', `./comments.html?${id}`)
 }
