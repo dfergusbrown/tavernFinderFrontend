@@ -72,6 +72,15 @@ body {
     color: white;
 }
 
+#avatar {
+    height: 50vmin;
+    border-radius: 50%;
+}
+
+.modal {
+    color: black;
+}
+
 .hide {
     display: none;
 }
