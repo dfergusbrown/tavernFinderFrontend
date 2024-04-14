@@ -3,6 +3,7 @@ const submitBtn = document.querySelector('#submitBtn')
 const switchSubmitBtn = document.querySelector('#switchSubmitBtn')
 const registerFields = document.querySelectorAll('.registerFields')
 const titleText = document.querySelector('.title')
+const message = document.querySelector('#message')
 
 /* -- EVENT LISTENERS -- */
 submitBtn.addEventListener('click', submitUser)
@@ -11,13 +12,13 @@ switchSubmitBtn.addEventListener('click', toggleRegisterLogin)
 let registering = false
 
 function toggleRegisterLogin(e) {
-    e.preventDefault()
+    e ? e.preventDefault() : null
     registering ? registering = false : registering = true
     if (!registering) { //logging in
         registerFields.forEach(el => {
             el.classList.add('hide')
         })
-        switchSubmitBtn.textContent = 'Switch to Register User'
+        switchSubmitBtn.textContent = 'Switch to Register'
         submitBtn.textContent = 'Login'
         titleText.textContent = 'Login'
     } else {
@@ -36,10 +37,10 @@ async function submitUser(e) {
     const formData = new FormData(formEl, submitBtn)
     const formDataObj = {}
     for (const [key, value] of formData) {
-        if (key === 'firstName' ||
+        if (!registering && (key === 'firstName' ||
             key === 'lastName' ||
-            key === 'email') {
-                return null
+            key === 'email')) {
+                null
             } else {
                 formDataObj[key] = value
             }
@@ -61,9 +62,18 @@ async function submitUser(e) {
         const JSONresult = await response.json()
         console.log(JSONresult)
 
-        if (response.ok) {
-            window.location.pathname = '/views/login.html'
+        if (JSONresult.successMessage || JSONresult.passwordError) {
+            message.textContent = JSONresult.successMessage || JSONresult.passwordError
         }
+        if (JSONresult.token) {
+            localStorage.setItem('jwt', JSONresult.token)
+        }
+        if (response.ok) {
+            registering ? 
+                toggleRegisterLogin() :
+                setTimeout(window.location.pathname = '/index.html', 3000)
+        }
+
     } catch(error) {
         console.error(error)
     }

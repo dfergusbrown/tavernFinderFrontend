@@ -32,6 +32,9 @@ body {
     border: transparent 3px white;
     border-radius: 10px;
 }
+#message {
+    color: red;
+}
 
 .field {
     color: aqua;
