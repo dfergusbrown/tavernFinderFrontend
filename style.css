@@ -4,6 +4,13 @@ body {
     padding: 0;
     height: 100vh;
     color: white;
+    position: relative;
+}
+
+.tavernBackground {
+    background-image: url('/assets/tavern.jpg');
+    background-position: center;
+    background-size: cover;
 }
 
 .navbar {
@@ -47,6 +54,22 @@ body {
 
 .commentText {
     color: aqua;
+}
+
+#search, #createPost {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#createPost {
+    top: 42%;
+}
+
+.entryLink {
+    text-decoration: none;
+    color: white;
 }
 
 .hide {
