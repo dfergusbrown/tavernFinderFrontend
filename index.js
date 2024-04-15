@@ -7,7 +7,7 @@ const numOfResults = document.querySelector('#numOfResults')
 /* -- Event Listeners -- */
 searchBtn.addEventListener('click', getResults)
 
-
+const url = process.env.SERVER_URL
 /* -- FUNCTIONS -- */
 async function getResults(e) {
     e.preventDefault()
@@ -20,9 +20,8 @@ async function getResults(e) {
     }
     console.log(formDataObj)
 
-    const url = 'http://localhost:3001/post/search'
     try {
-        const response = await fetch(url, {
+        const response = await fetch(`${url}post/search`, {
             method: "POST",
             mode: "cors",
             headers: {

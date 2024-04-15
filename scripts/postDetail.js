@@ -36,5 +36,5 @@ async function fetchData() {
     expectedLengthField.textContent = postResult.expectedLength
     descriptionField.textContent = postResult.description
 
-    commentsLink.setAttribute('href', `./comments.html?${id}`)
+    commentsLink.setAttribute('href', `/views/comments.html?${id}`)
 }
