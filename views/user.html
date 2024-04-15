@@ -82,10 +82,151 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-
+                            <form class="p-1" id="createForm" method="post">
+                                <div class="mb-1 mt-1 row">
+                                    <label for="campaignName" class="form-label col-4 text-end">Campaign Name</label>
+                                    <input type="text" name="campaignName" class="form-control w-50" id="campaignName" placeholder="Curse of Maude">
+                                </div>
+                                <div class="mb-1 mt-1 row">
+                                    <label for="location" class="form-label col-4 text-end">Zipcode</label>
+                                    <input type="text" name="location" class="form-control w-50" id="zipcode" placeholder="90210">
+                                </div>
+                                <div class="form-group d-flex mb-2 py-1">
+                                    <label for="timeOfDay" class="form-label" value="07:00AM">Starting at</label>
+                                    <input type="time" id="startTime" name="timeOfDay">
+                                </div>
+                                <div class="form-group my-2 py-1">
+                                    <label for="daysOfWk" class="form-label">Days of Week</label>
+                                    <div class="" id="daysOfWk">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="daysOfWkOpts1" type="checkbox" id="inlineCheckboxM" value="Mon">
+                                            <label class="form-check-label" for="inlineCheckbox1">Mon</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="daysOfWkOpts2" type="checkbox" id="inlineCheckboxT" value="Tues">
+                                            <label class="form-check-label" for="inlineCheckbox1">Tues</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="daysOfWkOpts3" type="checkbox" id="inlineCheckboxW" value="Wed">
+                                            <label class="form-check-label" for="inlineCheckbox1">Wed</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="daysOfWkOpts4" type="checkbox" id="inlineCheckboxTh" value="Thurs">
+                                            <label class="form-check-label" for="inlineCheckbox1">Thurs</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="daysOfWkOpts5" type="checkbox" id="inlineCheckboxF" value="Fri">
+                                            <label class="form-check-label" for="inlineCheckbox1">Fri</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="daysOfWkOpts6" type="checkbox" id="inlineCheckboxSa" value="Sat">
+                                            <label class="form-check-label" for="inlineCheckbox1">Sat</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" name="daysOfWkOpts7" type="checkbox" id="inlineCheckboxSu" value="Sun">
+                                            <label class="form-check-label" for="inlineCheckbox1">Sun</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom mb-3 py-3">
+                                    <label for="campaignLength" class="form-label">Length of Campaign:</label>
+                                    <select class="" name="campaignLength" id="campaignLength">
+                                        <option selected></option>
+                                        <option value="one-shot">One-shot</option>
+                                        <option value="short">Short</option>
+                                        <option value="long">Long</option>
+                                    </select>
+                                </div>
+                                <div class="form-group py-1 mb-2">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" id="description" placeholder="Give me the hook!"></textarea>
+                                </div>
+                                <div class="form-group my-1">
+                                    <label for="totalSlots" class="form-label">Total number of Players</label>
+                                    <input type="number" id="totalSlots" name="totalSlots">
+                                </div>
+                                <div class="form-group border-bottom my-1 py-1">
+                                    <label for="offersSeshZero">Offers a 'session zero'?</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="offersSeshZero" id="offersSeshZero1" value="true">
+                                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="offersSeshZero" id="offersSeshZero2" value="false">
+                                        <label class="form-check-label" for="inlineRadio2">No</label>
+                                    </div>
+                                </div>
+                                <div class="form-group my-1 py-1">
+                                    <label for="roleplayHvy">How much roleplay?</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="roleplayHvy" id="roleplayHvy1" value="basically none">
+                                        <label class="form-check-label" for="roleplayHvy1">basically none</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="roleplayHvy" id="roleplayHvy2" value="some">
+                                        <label class="form-check-label" for="roleplayHvy2">some</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="roleplayHvy" id="roleplayHvy3" value="a lot">
+                                        <label class="form-check-label" for="roleplayHvy3">a lot</label>
+                                    </div>
+                                </div>
+                                <div class="form-group my-1 py-1">
+                                    <label for="combatHvy">How much combat?</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="combatHvy" id="combatHvy1" value="basically none">
+                                        <label class="form-check-label" for="combatHvy1">basically none</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="combatHvy" id="combatHvy2" value="some">
+                                        <label class="form-check-label" for="combatHvy2">some</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="combatHvy" id="combatHvy3" value="a lot">
+                                        <label class="form-check-label" for="combatHvy3">a lot</label>
+                                    </div>
+                                </div>
+                                <div class="form-group my-1 py-1">
+                                    <label for="roleplayHvy">How much exploration?</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="exploreHvy" id="exploreHvy1" value="basically none">
+                                        <label class="form-check-label" for="exploreHvy1">basically none</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="exploreHvy" id="exploreHvy2" value="some">
+                                        <label class="form-check-label" for="exploreHvy2">some</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="exploreHvy" id="exploreHvy3" value="a lot">
+                                        <label class="form-check-label" for="exploreHvy3">a lot</label>
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom my-1 py-1">
+                                    <label for="maps&minis">Using combat maps and minis?</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="maps&minis" id="maps&minis1" value="Yes">
+                                        <label class="form-check-label" for="maps&minis1">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="maps&minis" id="maps&minis2" value="No">
+                                        <label class="form-check-label" for="maps&minis2">No</label>
+                                    </div>
+                                </div>
+                                <div class="form-group border-bottom my-1 py-1">
+                                    <label for="drinking">Is drinking allowed?</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="drinking" id="drinking1" value="Yes">
+                                        <label class="form-check-label" for="drinking1">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="drinking" id="drinking2" value="No">
+                                        <label class="form-check-label" for="drinking2">No</label>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary">Save Changes</button>
                         </div>
                     </div>
