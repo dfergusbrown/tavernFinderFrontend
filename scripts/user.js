@@ -1,21 +1,29 @@
 const usernameTitle = document.querySelector('#usernameTitle')
 const postList = document.querySelector('#postList')
+const jwt = localStorage.getItem('jwt')
 
 /* -- EVENT LISTENERS -- */
+checkIfLoggedIn()
+function checkIfLoggedIn() {
+    if (!jwt) {
+        window.location.pathname = '/views/signup.html'
+    }
+}
 
-
-// renderPosts()
+jwt && renderPosts()
 async function renderPosts() {
-    const url = 'http://localhost:3001/post/'
+    const url = 'http://localhost:3001/user/allposts/'
     try {
         const response = await fetch(`${url}`, {
             method: "GET",
             mode: "cors",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${jwt}`
             }
         })
         const JSONresult = await response.json()
+        console.log(JSONresult)
         
         JSONresult.results.forEach(el => {
             const post = document.createElement('div')
