@@ -10,6 +10,7 @@ submitBtn.addEventListener('click', submitUser)
 switchSubmitBtn.addEventListener('click', toggleRegisterLogin)
 
 let registering = false
+const url = process.env.SERVER_URL
 
 function toggleRegisterLogin(e) {
     e ? e.preventDefault() : null
@@ -48,9 +49,8 @@ async function submitUser(e) {
     console.log(formDataObj)
     let pathName = registering ? 'register' : 'login'
 
-    const url = `http://localhost:3001/user/${pathName}`
     try {
-        const response = await fetch(url, {
+        const response = await fetch(`${url}user/${pathName}`, {
             method: "POST",
             mode: "cors",
             headers: {

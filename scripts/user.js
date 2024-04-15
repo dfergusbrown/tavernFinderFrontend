@@ -3,9 +3,13 @@ const postList = document.querySelector('#postList')
 const formEl = document.querySelector('#createForm')
 const saveSubmitBtn = document.querySelector('#saveSubmitBtn')
 const jwt = localStorage.getItem('jwt')
+const formElements = document.querySelectorAll('.formElement')
 
 /* -- EVENT LISTENERS -- */
 saveSubmitBtn.addEventListener('click', createPost)
+
+let putOrPost = false
+const url = process.env.SERVER_URL
 
 
 checkIfLoggedIn()
@@ -17,9 +21,8 @@ function checkIfLoggedIn() {
 
 jwt && renderPosts()
 async function renderPosts() {
-    const url = 'http://localhost:3001/user/allposts/'
     try {
-        const response = await fetch(`${url}`, {
+        const response = await fetch(`${url}user/allposts/`, {
             method: "GET",
             mode: "cors",
             headers: {
@@ -38,6 +41,8 @@ async function renderPosts() {
                     const editBtn = document.createElement('button')
                     editBtn.classList.add('btn', 'btn-secondary')
                     editBtn.textContent = 'Edit'
+                    editBtn.dataset.postId = el._id
+                    editBtn.addEventListener('click', renderEditData)
                     colDiv.appendChild(editBtn)
 
                 const col2 = document.createElement('div')
@@ -56,9 +61,13 @@ async function renderPosts() {
     }
 }
 
+function togglePutOrPost() {
+    putOrPost ? putOrPost = false : putOrPost = true;
+}
+
 async function createPost(e) {
     e.preventDefault()
-
+    
     const formData = new FormData(formEl)
     const formDataObj = {}
     const playStyle = {}
@@ -82,10 +91,12 @@ async function createPost(e) {
     formDataObj['charCreation'] = charCreation
     console.log(formDataObj)
 
-    const url = 'http://localhost:3001/post/'
+    const id = putOrPost ? 'idhere' : null
+    const method = putOrPost ? "PUT" : "POST"
+    const url = `http://localhost:3001/post/${id}`
     try {
         const response = await fetch(url, {
-            method: "POST",
+            method: method,
             mode: "cors",
             headers: {
                 "Content-Type": "application/json",
@@ -94,9 +105,48 @@ async function createPost(e) {
             body: JSON.stringify(formDataObj)
         })
         const JSONresult = await response.json()
-        
+        console.log(JSONresult)
 
     } catch (error) {
         console.error(error)
     }
+}
+
+async function renderEditData() {
+    const id = this.dataset.postId
+    console.log(id)
+    try {
+        
+        const url = `http://localhost:3001/post/${id}`
+        const response = await fetch(`${url}`, {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                "Content-Type": "application/json",
+                // "Authorization": `Bearer ${jwt}`
+            }
+        })
+        const JSONresult = await response.json()
+        console.log(JSONresult[0])
+        const result = JSONresult[0]
+        // console.log(formElements)
+
+        for (const [key, value] of result) {
+            const formElement = formEl.querySelector(`[name="${key}"]`);
+            console.log(formElement)
+            if (formElement) {
+              formElement.value = typeof value === 'String' ? value : null
+            }
+          }
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function clearForm() {
+    console.log('clear form')
+    formElements.forEach(el => {
+        el.value = null
+    })
 }

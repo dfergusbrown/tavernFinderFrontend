@@ -8,13 +8,14 @@ const expectedLengthField = document.querySelector('#expectedLengthField')
 const descriptionField = document.querySelector('#descriptionField')
 const commentsLink = document.querySelector('#commentsLink')
 
+const url = process.env.SERVER_URL
+
 fetchData()
 async function fetchData() {
     const queryString = window.location.search
     const id = queryString.substring(1)
     console.log(id)
 
-    const url = 'http://localhost:3001/'
     const response = await fetch(`${url}post/${id}`, {
         method: "GET",
         mode: "cors",

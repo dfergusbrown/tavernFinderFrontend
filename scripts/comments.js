@@ -1,12 +1,14 @@
 const comContainer = document.querySelector('#commentsBox')
 
+const url = process.env.SERVER_URL
+
+
 fetchData()
 async function fetchData() {
     const queryString = window.location.search
     const id = queryString.substring(1)
     console.log(id)
 
-    const url = 'http://localhost:3001/'
     const response = await fetch(`${url}comments/${id}`, {
         method: "GET",
         mode: "cors",
