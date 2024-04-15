@@ -10,7 +10,7 @@ submitBtn.addEventListener('click', submitUser)
 switchSubmitBtn.addEventListener('click', toggleRegisterLogin)
 
 let registering = false
-const url = process.env.SERVER_URL
+const url = "https://tavern-finder-api-03e4c798f637.herokuapp.com/"
 
 function toggleRegisterLogin(e) {
     e ? e.preventDefault() : null

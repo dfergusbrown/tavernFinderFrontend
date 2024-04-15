@@ -8,7 +8,7 @@ const expectedLengthField = document.querySelector('#expectedLengthField')
 const descriptionField = document.querySelector('#descriptionField')
 const commentsLink = document.querySelector('#commentsLink')
 
-const url = process.env.SERVER_URL
+const url = "https://tavern-finder-api-03e4c798f637.herokuapp.com/"
 
 fetchData()
 async function fetchData() {

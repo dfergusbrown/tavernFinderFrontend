@@ -7,7 +7,8 @@ const numOfResults = document.querySelector('#numOfResults')
 /* -- Event Listeners -- */
 searchBtn.addEventListener('click', getResults)
 
-const url = process.env.SERVER_URL
+const url = "https://tavern-finder-api-03e4c798f637.herokuapp.com/"
+
 /* -- FUNCTIONS -- */
 async function getResults(e) {
     e.preventDefault()

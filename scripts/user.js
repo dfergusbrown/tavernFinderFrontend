@@ -9,7 +9,7 @@ const formElements = document.querySelectorAll('.formElement')
 saveSubmitBtn.addEventListener('click', createPost)
 
 let putOrPost = false
-const url = process.env.SERVER_URL
+const url = "https://tavern-finder-api-03e4c798f637.herokuapp.com/"
 
 
 checkIfLoggedIn()
