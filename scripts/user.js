@@ -27,8 +27,23 @@ async function renderPosts() {
         
         JSONresult.results.forEach(el => {
             const post = document.createElement('div')
-            post.classList.add('row')
-            post.textContent = el.campaignName
+            post.classList.add('row', 'my-2')
+                const colDiv = document.createElement('div')
+                colDiv.classList.add('col-2')
+                post.appendChild(colDiv)
+                    const editBtn = document.createElement('button')
+                    editBtn.classList.add('btn', 'btn-secondary')
+                    editBtn.textContent = 'Edit'
+                    colDiv.appendChild(editBtn)
+
+                const col2 = document.createElement('div')
+                col2.classList.add('col')
+
+                    const postLink = document.createElement('a')
+                    postLink.setAttribute('href', `/views/postDetail.html?${el._id}`)
+                    postLink.textContent = el.campaignName
+                    col2.appendChild(postLink)
+                post.appendChild(col2)
             postList.appendChild(post)
         })
         
